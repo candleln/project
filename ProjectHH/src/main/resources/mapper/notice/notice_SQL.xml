@@ -5,16 +5,18 @@
 	<select id="noticeList"
 		resultType="com.projecthh.company.notice.vo.NoticeVO">
         <![CDATA[
-			SELECT notice_no, title, DATE_FORMAT(notice_date,'%Y-%m-%d') AS notice_date  
-			FROM notice WHERE delete_yn = 'n' ORDER BY notice_no DESC LIMIT #{page}, 10
+			SELECT notice_no, title, 
+			IF(DATE_FORMAT(NOW(),'%Y-%m-%d')=DATE_FORMAT(notice_date,'%Y-%m-%d'), TIME_FORMAT(notice_time, '%H:%i:%s'), DATE_FORMAT(notice_date,'%Y-%m-%d')) AS notice_date  
+			FROM notice WHERE delete_yn = 'N' ORDER BY notice_no DESC LIMIT #{page}, 10
         ]]>
 	</select>
 
 	<select id="search"
 		resultType="com.projecthh.company.notice.vo.NoticeVO">
         <![CDATA[
-			SELECT notice_no, title, DATE_FORMAT(notice_date,'%Y-%m-%d') AS notice_date
-			FROM notice WHERE title LIKE CONCAT('%', #{search}, '%') AND delete_yn = 'n' ORDER BY notice_no DESC LIMIT #{page}, 10
+			SELECT notice_no, title,
+			IF(DATE_FORMAT(NOW(),'%Y-%m-%d')=DATE_FORMAT(notice_date,'%Y-%m-%d'), TIME_FORMAT(notice_time, '%H:%i:%s'), DATE_FORMAT(notice_date,'%Y-%m-%d')) AS notice_date 
+			FROM notice WHERE title LIKE CONCAT('%', #{search}, '%') AND delete_yn = 'N' ORDER BY notice_no DESC LIMIT #{page}, 10
         ]]>
 	</select>
 
@@ -44,7 +46,7 @@
 	
 	<update id="noticeDelete" parameterType="Integer">
 		<![CDATA[
-			UPDATE notice SET delete_yn = 'y' WHERE notice_no = #{parseInt}
+			UPDATE notice SET delete_yn = 'Y' WHERE notice_no = #{parseInt}
 		]]>
 	</update>
 

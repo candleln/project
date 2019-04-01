@@ -1,7 +1,7 @@
 package com.projecthh.company.qna.vo;
 
 public class QnaVO {
-	private String qna_no, title, content, qna_date, qna_time, file1, file2, user_no,
+	private String qna_no, title, content, qna_date, qna_time, file1, file2, user_no, upw,
 	question_category, answer_state, pass, private_key, name, comment;
 
 
@@ -59,6 +59,14 @@ public class QnaVO {
 
 	public void setFile2(String file2) {
 		this.file2 = file2;
+	}
+	
+	public String getUpw() {
+		return upw;
+	}
+
+	public void setUpw(String upw) {
+		this.upw = upw;
 	}
 
 	public String getQuestion_category() {

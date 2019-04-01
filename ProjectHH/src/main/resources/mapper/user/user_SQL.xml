@@ -47,13 +47,15 @@
 	
 	<select id="notice" resultType="com.projecthh.company.notice.vo.NoticeVO">
 		<![CDATA[
-			SELECT notice_no, title, DATE_FORMAT(notice_date,'%Y-%m-%d') AS notice_date, TIME_FORMAT(notice_time, '%H:%i:%s') AS notice_time FROM notice WHERE delete_yn='n' ORDER BY notice_no DESC LIMIT 0, 5
+			SELECT notice_no, title, IF(DATE_FORMAT(NOW(),'%Y-%m-%d')=DATE_FORMAT(notice_date,'%Y-%m-%d'), TIME_FORMAT(notice_time, '%H:%i:%s'), DATE_FORMAT(notice_date,'%Y-%m-%d')) AS notice_date
+			FROM notice WHERE delete_yn='N' ORDER BY notice_no DESC LIMIT 0, 5
 		]]>
 	</select>
 	
 	<select id="qna" resultType="com.projecthh.company.qna.vo.QnaVO">
 		<![CDATA[
-			SELECT qna_no, title, DATE_FORMAT(qna_date,'%Y-%m-%d') AS qna_date FROM qna WHERE delete_yn='n' ORDER BY qna_no DESC LIMIT 0,5
+			SELECT qna_no, title, IF(DATE_FORMAT(NOW(),'%Y-%m-%d')=DATE_FORMAT(qna_date,'%Y-%m-%d'), TIME_FORMAT(qna_time, '%H:%i:%s'), DATE_FORMAT(qna_date,'%Y-%m-%d')) AS qna_date 
+			FROM qna WHERE delete_yn='N' ORDER BY qna_no DESC LIMIT 0,5
 		]]>
 	</select>
 	

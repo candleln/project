@@ -18,6 +18,7 @@
 		<div>
 			<c:choose>
 				<c:when test="${qnaDetail ne null}">
+					<input type="hidden" value="${qnaDetail.qna_no }" id="no">
 					<div class="private">
 						<c:if test="${qnaDetail.private_key eq '1'}">비공개</c:if>
 						<c:if test="${qnaDetail.private_key ne '1'}">공개</c:if>
@@ -46,14 +47,16 @@
 					</table>
 	
 					<div class="bottom">
-						<c:if test="${sessionScope.manager != null}">
-							<button type="button" id="btninput" value="update" onclick="location.href='/qnaEdit?no=${qnaDetail.qna_no}';">수정</button>
-							<button type="button" id="btninput" value="delete" onclick="location.href='/qnaDelete?num=${qnaDetail.qna_no}'">삭제</button>
-						</c:if>
-						<c:if test="${sessionScope.manager == null}">
-							<button type="button" id="btninput" value="update" onclick="location.href='/qnaPass?no=${qnaDetail.qna_no}&type=update';">수정</button>
-							<button type="button" id="btninput" value="delete" onclick="location.href='/qnaPass?no=${qnaDetail.qna_no}&type=delete';">삭제</button>
-						</c:if>
+						<c:choose>
+							<c:when test="${sessionScope.manager ne null || sessionScope.id ne null}">
+								<button type="button" onclick="location.href='/qnaEdit?no=${qnaDetail.qna_no}';">수정</button>
+								<button type="button" id="check">삭제</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" id="uBtn">수정</button>
+								<button type="button" id="dBtn">삭제</button>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:when>
 				<c:when test="${qnaDetail eq null}">
@@ -87,6 +90,30 @@
 <script type="text/javascript">
 $(function() {
 	$("#id").html($("#id").html().split("@")[0]);
+	
+	var windowObj;
+	function setting(e) {
+		var w = 500, h = 500;
+		LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+		TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
+		var settings = 'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+', resizable';
+		windowObj = window.open("qnaPass?type="+e+"&no="+$("#no").val(), "qnaPass", settings);
+	};
+	
+	$("#uBtn").click(function(){
+		setting("update");
+	});
+	$("#dBtn").click(function(){
+		setting("delete");
+	});
+	
+	$("#check").click(function() {
+		if (confirm("삭제하시겠습니까?")) {
+			location.href='/qnaDelete?num='+$("#no").val();
+		} else {
+			location.href='/qnaList';
+		}
+	})
 })
 </script>
 </html>

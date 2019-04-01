@@ -6,7 +6,6 @@
 <header>
 	<section>
 		<div id="loginarea">
-		세션 ${sessionScope.id }
 			<c:if test="${sessionScope.id eq null}">
 				<div>
 				<a href="ulogin">로그인</a> |

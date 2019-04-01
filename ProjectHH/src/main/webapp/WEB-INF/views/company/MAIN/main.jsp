@@ -28,18 +28,6 @@
 	  <span class="control_btn"></span> 
 	  <span class="control_btn"></span> 
 	</div>
-		<!-- <div id="slider">
-			<div class="img_wrap">
-				<img alt="" src="../../../../img/main1.jpg">
-			</div>
-			<div class="img_wrap">
-				<img alt="" src="../../../../img/main2.jpg">
-			</div>
-			<div class="control_wrap">
-				<div class="control_btn"></div>
-	   			<div class="control_btn"></div>
-			</div>
-		</div> -->
 	<div id="container">
 		<div id="list">
 			<div id="notice">
@@ -58,7 +46,7 @@
 						<tr class="row" onclick="location.href='ndetail?notice_no=${nvo.notice_no }'">
 							<td>${nvo.notice_no }</td>
 							<td><small>[공지]</small> ${nvo.title }</td>
-							<td>${nvo.notice_date } ${nvo.notice_time }</td>
+							<td>${nvo.notice_date }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -80,7 +68,7 @@
 						<tr class="row" onclick="location.href='qnaDetail?no=${qvo.qna_no }'">
 							<td>${qvo.qna_no }</td>
 							<td>${qvo.title }</td>
-							<td>${qvo.qna_date } ${qvo.qna_time }</td>
+							<td>${qvo.qna_date }</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -94,22 +82,6 @@ footer {bottom: auto;} hr {display: none;}
 </style>
 <script type="text/javascript">
 $(function() {
-/*     function moveSlider(index){
-        var moveLeft = (index * -100)+"%";
-        $("#img_wrap").animate({left : moveLeft},"slow");
- 
-        $('.control_btn[data-index=' + index + ']').addClass('active');
-        $('.control_btn[data-index!=' + index + ']').removeClass('active');
-    };
- 
-    $('.control_btn').each(function(index){
-        $(this).attr('data-index',index)
-    }).click(function(){
-        var index = $(this).attr('data-index');
-        moveSlider(index);
-    });
- 
-    moveSlider(0); */
     var slideIndex = 0;
     showSlides();
 

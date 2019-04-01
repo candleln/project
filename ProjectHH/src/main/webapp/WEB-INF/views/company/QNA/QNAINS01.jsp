@@ -30,7 +30,7 @@
 				<tr>
 					<th>작성자</th>
 					<c:if test="${sessionScope.id ne null }">
-						<td colspan="3">${sessionScope.id}</td>
+						<td colspan="3" id="id">${sessionScope.id}</td>
 					</c:if>
 					<c:if test="${sessionScope.id eq null }">
 						<td colspan="3"><input type="text" id="name" name="name"></td>
@@ -87,7 +87,8 @@ $(function() {
 			return false; 
 		} else { return confirm('등록하시겠습니까?') }
 	});	
-		
+	
+	$("#id").html($("#id").html().split("@")[0]);
 });
 </script>
 </html>

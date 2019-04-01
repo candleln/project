@@ -46,6 +46,9 @@
 					<td id="no">${vo.qna_no }</td>
 					<c:choose>
 						<c:when test="${vo.private_key eq '1' && sessionScope.manager eq null}">
+							<c:if test="${sessionScope.id ne null && vo.upw == vo.pass }">
+								<td onclick="location.href='/qnaDetail?no=${vo.qna_no }';">${vo.title }							
+							</c:if>
 							<td id="title">${vo.title }
 							<c:if test="${'1' eq vo.answer_state }">
 								<span><small>답변완료</small></span>
@@ -61,7 +64,7 @@
 								<span><small>답변완료</small></span>
 							</c:if>
 							<c:if test="${'1' ne vo.answer_state }">
-								<span><small>미답변</small></span>
+								<span><small>답변대기</small></span>
 							</c:if>
 							</td>
 						</c:otherwise>		
@@ -74,7 +77,7 @@
 							<td>${vo.name } </td>
 						</c:otherwise>
 					</c:choose>
-					<td>${vo.qna_date } ${vo.qna_time }</td>
+					<td>${vo.qna_date }</td>
 					<td>
 						<c:choose>
 							<c:when test="${'1' eq vo.private_key }">비공개</c:when>
@@ -94,7 +97,7 @@
 			<div>
 				<a href="qnaList">처음</a>
 				<c:if test="${page.prev}">
-					<a href="qnaList?page=${startpage - 1}">이전</a>
+					<a href="qnaList?page=${page.startPage - 1}">이전</a>
 				</c:if>
 				<c:forEach begin="${page.startPage}" end="${page.endPage }" var="i" step="1">
 					<c:if test="${i != page.currIndex }">

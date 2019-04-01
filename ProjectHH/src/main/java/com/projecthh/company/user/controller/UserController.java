@@ -61,7 +61,7 @@ public class UserController {
 				String userid = vo.getId();
 				//관리자
 				if (vo.getGrant().equals("1")) {
-					session.setAttribute("manager", "manger");
+					session.setAttribute("manager", "manager");
 				//개인
 				} else if (request.getParameter("user_type").equals("P")) {
 					session.setAttribute("user_type", "P");

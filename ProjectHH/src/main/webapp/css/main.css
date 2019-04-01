@@ -13,50 +13,6 @@ body {
 	font-family: 'S-CoreDream-3Light'; 
 }
 
-/* #slider {
-	margin: 0 auto;
-	width: 100%;
-	padding-top: 170px;
-	position: relative;
-	overflow: hidden;
-}
-
-#slider img {
-	margin: 0 auto;
-	width: 100%;
-	height: 700px;
-	float: left;
-}
-
-.img_wrap {
-	position: relative;
-	width: 100%;
-}
-
-.control_wrap{
-    position:absolute;
-    top:845px;
-    left:49%;
-    height: 13px;
-    overflow: hidden;
-}
-
-.control_btn{
-	margin-left: 5px;
-    position:relative;
-    width:13px;
-    height:46px;
-    float:left;
-    cursor: pointer;
-    background-image: url('../img/point_button.png');
-}
-
-.control_btn:hover {
-	top:-16px;
-}
-.control_btn.active {
-	top:-31px;
-} */
 .slides {
 	display: none;
 	margin: 0 auto;

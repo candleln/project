@@ -4,8 +4,8 @@
 
 	<select id="qnaList" resultType="com.projecthh.company.qna.vo.QnaVO" parameterType="Integer">
         <![CDATA[
-			SELECT qna_no, title, SUBSTRING_INDEX(id, '@', 1) as user_no , qna.name, private_key, answer_state, pass,
-			DATE_FORMAT(qna_date, '%Y-%m-%d') as qna_date, TIME_FORMAT(qna_time, '%H:%i:%s') as qna_time
+			SELECT qna_no, title, SUBSTRING_INDEX(id, '@', 1) as user_no, user.pw as upw, qna.name, private_key, answer_state, pass,
+			IF(DATE_FORMAT(NOW(),'%Y-%m-%d')=DATE_FORMAT(qna_date,'%Y-%m-%d'), TIME_FORMAT(qna_time, '%H:%i:%s'), DATE_FORMAT(qna_date,'%Y-%m-%d')) AS qna_date
 			FROM  qna LEFT JOIN user ON qna.user_no = user.user_no WHERE delete_yn = 'N' 
 			ORDER by qna_no DESC LIMIT #{page}, 10;
         ]]>
