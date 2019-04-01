@@ -1,0 +1,25 @@
+package com.projecthh.company.downloads.DAO;
+
+import java.util.ArrayList;
+
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.company.downloads.vo.DownloadsVO;
+
+@Repository("downloadsDAO")
+public class DownloadsDAO extends AbstractDAO {
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<DownloadsVO> downloadsDetail(String upload_no) {
+		// TODO Auto-generated method stub
+		return (ArrayList<DownloadsVO>) selectOne("downloads.downloadsDetail", upload_no);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<DownloadsVO> downloasdEdit(String parameter) {
+		// TODO Auto-generated method stub
+		return (ArrayList<DownloadsVO>) selectOne("downloads.downloadsEdit", parameter);
+	}
+
+}

@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link href="../../../../css/qna.css" rel="stylesheet">
+</head>
+<body>
+<%@include file="../MAIN/topmenu.jsp"%>
+<div id="container">
+	<form action="qnadelete" method="post">
+		게시글 비밀번호를 입력해주세요. <input type="password" id="pw" name="pw"><br>
+		<button id="btnPWinput" type="submit">입력</button>
+		<input type="hidden" name="num" id="num" value="${map.no }">
+		<button type="button" onclick="location.href='/qnaDetail?no=${map.no }';">취소</button>
+	</form>
+	<input type="hidden" id="pass" value="${map.pass }">
+	<input type="hidden" id="type" value="${map.type }">
+</div>
+<%@include file="../MAIN/footer.jsp"%>
+</body>
+<script type="text/javascript">
+/* 		$("#btnPWinput").click(function(){
+ */			
+/* $(function() {
+	$('form').submit(function() { */
+	$("#btnPWinput").click(function(){
+		if ($('#pw').val() == $('#pass').val()) {
+			if ($('#type').val() == "update") {
+				location.replace("/qnaupdate?no=${map.no}");
+				return false;
+			}else if ($('#type').val() == "detail") {
+				location.replace("/qnaDetail?no=${map.no}")
+				return false;
+			}
+			else {
+				alert("삭제되었습니다.");
+				location.href("/qnadelete?no=${map.no}");
+				return false;
+			}
+		} else {
+			alert("틀렸습니다. 다시 입력해주세요.");
+			return false;
+		}
+	});
+/*  });	 */
+	/* }); */
+</script>
+</html>

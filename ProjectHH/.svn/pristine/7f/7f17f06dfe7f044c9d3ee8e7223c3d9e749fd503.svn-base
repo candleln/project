@@ -1,0 +1,46 @@
+package com.projecthh.crm.maintenance.DAO;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.crm.maintenance.vo.MaintenanceVO;
+
+@Repository("maintenanceDAO")
+public class MaintenanceDAO extends AbstractDAO {
+
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<MaintenanceVO> maintenanceList(int page) {
+		
+		return (ArrayList<MaintenanceVO>) selectList("maintenance.maintenanceList",page);
+	}
+
+	public void maintenanceDel(int m_no) {
+		update("maintenance.maintenanceDel", m_no);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<MaintenanceVO> maintenanceSearch(int page, String key) {
+		Map<String, Object> map = new HashedMap();
+		map.put("key",key);
+		map.put("page",page);
+		return (ArrayList<MaintenanceVO>) selectList("maintenance.maintenanceSearch", map);
+	}
+
+	public MaintenanceVO maintenanceDetail(int m_no) {
+
+		return (MaintenanceVO) selectOne("maintenance.maintenanceDetail",m_no);
+	}
+
+	public void mainInsert(MaintenanceVO mvo) {
+		insert("maintenance.mainInsert", mvo);	
+	}
+
+	public void mainUpdate(MaintenanceVO mvo) {
+		update("maintenance.mainUpdate", mvo);		
+	}	
+}

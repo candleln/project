@@ -1,0 +1,51 @@
+package com.projecthh.company.notice.DAO;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.company.notice.vo.NoticeVO;
+
+@Repository("noticeDAO")
+public class NoticeDAO extends AbstractDAO {
+
+	public void insert(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		insert("notice.insert", vo);
+	}
+
+	public NoticeVO noticeDetail(String parameter) {
+		// TODO Auto-generated method stub
+		return (NoticeVO) selectOne("notice.noticeDetail", parameter);
+	}
+
+	public void noticeDelete(int parseInt) {
+		// TODO Auto-generated method stub
+		delete("notice.noticeDelete", parseInt);
+	}
+
+	public NoticeVO noticeEdit(String parameter) {
+		// TODO Auto-generated method stub
+		return (NoticeVO) selectOne("notice.noticeEdit", parameter);
+	}
+
+	public void edit(NoticeVO vo) {
+		// TODO Auto-generated method stub
+		selectOne("notice.edit", vo);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<NoticeVO> noticeList(int page) {
+		// TODO Auto-generated method stub
+		return (ArrayList<NoticeVO>) selectList("notice.noticeList", page);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<NoticeVO> search(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (ArrayList<NoticeVO>) selectList("notice.search", map);
+	}
+
+}

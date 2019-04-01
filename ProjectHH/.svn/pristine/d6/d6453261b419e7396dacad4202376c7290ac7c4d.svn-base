@@ -1,0 +1,71 @@
+<%@page import="javax.mail.Session"%>
+<%@page import="org.springframework.web.bind.support.SessionAttributeStore"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>공지사항</title>
+<link rel="stylesheet" type="text/css" href="../../../../../css/Notice.css">
+<script type="text/javascript">
+	function check() {
+		var notice_no = $
+		{
+			detail.notice_no
+		}
+		var href = "delete?notice_no";
+		var str = href + num;
+		if (confirm("삭제?") == true) {
+			document.getElementById(href).submit();
+		} else {
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<%@include file="../MAIN/topmenu.jsp"%>
+	<section>
+		<div id="ncontainer">
+			<div id="nTitle">
+				<h1><a onclick="location.href='nlist'" style="cursor:pointer">공지사항</a></h1>
+			</div>
+			<div id="nListTable">
+				<table>
+					<c:choose>
+						<c:when test="${!empty detail }">
+							<tr>
+								<th>제목</th>
+								<td colspan="3">[공지]${detail.title }</td>
+							</tr>
+							<tr>
+								<th>일시</th>
+								<td>${detail.notice_date } ${detail.notice_time }</td>
+							</tr>
+							<tr>
+								<td id="content" colspan="3">내용</td>
+							</tr>
+							<tr>
+								<td id="content" colspan="3" height="450px">${detail.content }</td>
+							</tr>
+						</c:when>
+					</c:choose>
+				</table>
+				<!-- 사용자 script 수정 시 비밀번호 확인 / 답변 완료 시 수정 불가 -->
+				<div id="button">
+				<!-- 관리자가 로그인하면 수정,삭제 버튼보이기 -->
+					<c:if test="${sessionScope.manager ne null}">
+						<button style="cursor:pointer"	onclick="location.href='nedit?notice_no=${detail.notice_no}'">수정</button>
+						<!-- <button onclick="check()">삭제?</button> -->
+						<button style="cursor:pointer" onclick="location.href='delete?notice_no=${detail.notice_no}'">삭제</button>
+					</c:if>
+					<!-- 일반 사용자라면 리스트 버튼만 -->
+					<button style="cursor:pointer" onclick="location.href='nlist'">리스트</button>
+				</div>
+			</div>
+		</div>
+	</section>
+	<%@include file="../MAIN/footer.jsp"%>
+</body>
+</html>

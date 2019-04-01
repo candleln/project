@@ -1,0 +1,132 @@
+package com.projecthh.company.notice.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.apache.velocity.app.event.ReferenceInsertionEventHandler.referenceInsertExecutor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.projecthh.company.notice.service.NoticeService;
+import com.projecthh.company.notice.vo.NoticeVO;
+
+@Controller
+public class NoticeController {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "noticeService")
+	private NoticeService noticeService;
+
+	// 페이징 리스트
+	@RequestMapping(value = "nlist")
+	public ModelAndView noticeList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/NOTICE/NOTLIS01");
+		int page = 0;
+
+		if (request.getParameter("page") != null) {
+			page = ((Integer.parseInt(request.getParameter("page"))) - 1) * 20;
+		}
+
+		mv.addObject("page", page);
+		
+		ArrayList<NoticeVO> vo = noticeService.noticeList(page);
+		
+		// 검색 단어가 들어온다면
+		if ((request.getParameter("search")) != null) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("search", request.getParameter("search"));
+			map.put("page", page);
+			vo = noticeService.search(map);
+			mv.addObject("search", map.get("search"));
+
+			// 없는 단어를 검색할경우
+			if (vo.size() == 0) {
+				return new ModelAndView("redirect:nlist");
+			}
+		}
+		
+		mv.addObject("list", vo);
+
+		int tcount = 0;
+		
+		if(vo.size() != 0) {
+			tcount = vo.get(0).getTotal_count();
+		}
+				
+		mv.addObject("total_count", tcount);
+		return mv;
+	}
+
+	// 공지 상세 페이지
+	@RequestMapping(value = "ndetail")
+	public ModelAndView noticeDetail(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("company/NOTICE/NOTDET01");
+		NoticeVO vo = new NoticeVO();
+		vo = noticeService.noticeDetail(request.getParameter("notice_no"));
+		mv.addObject("detail", vo);
+		return mv;
+	}
+
+	// 공지 수정 페이지
+	@RequestMapping(value = "nedit")
+	public ModelAndView noticeEdit(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("company/NOTICE/NOTEDI01");
+		NoticeVO vo = new NoticeVO();
+		vo = noticeService.noticeEdit(request.getParameter("notice_no"));
+		mv.addObject("edit", vo);
+		return mv;
+	}
+
+	// 공지 수정
+	@RequestMapping(value = "edit")
+	public ModelAndView edit(HttpServletRequest request) throws Exception {
+		// notice 호출(입력 메소드)
+		noticeService.edit(notice(request));
+		String no = request.getParameter("notice_no");
+		// no값으로 상세 페이지이동
+		return new ModelAndView("redirect:ndetail?notice_no=" + no + "");
+	}
+
+	// 공지 쓰기페이지
+	@RequestMapping(value = "ninsert")
+	public ModelAndView noticeInsert(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("company/NOTICE/NOTINS01");
+		request.setCharacterEncoding("UTF-8");
+
+		if (request.getParameter("title") != null && request.getParameter("content") != null) {
+			// notice 호출 (입력 메소드)
+			noticeService.insert(notice(request));
+			return new ModelAndView("redirect:nlist");
+		}
+
+		return mv;
+	}
+
+	// 공지 삭제
+	@RequestMapping(value = "delete")
+	public ModelAndView delete(HttpServletRequest request) throws Exception {
+		noticeService.noticedelete(Integer.parseInt(request.getParameter("notice_no")));
+		return new ModelAndView("redirect:nlist");
+	}
+
+	public NoticeVO notice(HttpServletRequest request) throws Exception {
+		NoticeVO vo = new NoticeVO();
+		// 한글 깨짐현상으로 추가
+		request.setCharacterEncoding("UTF-8");
+		vo.setTitle(request.getParameter("title"));
+		vo.setContent(request.getParameter("content"));
+		// 글 수정시 필요한 글번호값
+		if ((request.getParameter("notice_no")) != null) {
+			vo.setNotice_no(Integer.parseInt(request.getParameter("notice_no")));
+		}
+		return vo;
+	}
+
+}

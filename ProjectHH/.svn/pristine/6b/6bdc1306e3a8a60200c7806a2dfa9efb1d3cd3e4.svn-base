@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메인</title>
+<link rel="stylesheet" type="text/css"
+	href="../../../../../css/main.css">
+</head>
+<body>
+	<%@include file="topmenu.jsp"%>
+	<div class="container">
+		<div id="slider">
+			<!-- start slider -->
+			<div class="cincopa_responsive_iframe"
+				style="padding: 56.25% 0 0 0; position: relative;">
+				<div class="cincopa_responsive_wrapper"
+					style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;">
+					<iframe width="100%" height="100%"
+						src="//www.cincopa.com/media-platform/iframe.aspx?fid=AoKAAf-jlsPI"
+						frameborder="0" allowfullscreen scrolling="no"> </iframe>
+				</div>
+			</div>
+			<!-- end slider -->
+		</div>
+		<div id="list">
+			<div id="notice">
+				<div>
+					<h1>
+						<a href="nlist">공지사항</a>
+					</h1>
+				</div>
+				<table>
+					<tr>
+						<th>번호</th>
+						<th class="title">제목</th>
+						<th>날짜</th>
+						<th>시간</th>
+					</tr>
+					<tr>
+						<c:forEach items="${notice}" var="nvo">
+							<tr id="row" onclick="location.href='ndetail?notice_no=${nvo.notice_no }'">
+								<td>${nvo.notice_no }</td>
+								<td><a onclick="location.href='ndetail?notice_no=${nvo.notice_no }'">[공지]${nvo.title }</a></td>
+								<td>${nvo.notice_date }</td>
+								<td>${nvo.notice_time }</td>
+							</tr>
+						</c:forEach>
+				</table>
+			</div>
+
+			<div id="qna">
+				<div>
+					<h1>
+						<a href="qlist">Q&A</a>
+					</h1>
+				</div>
+				<table>
+					<tr>
+						<th>번호</th>
+						<th class="title">제목</th>
+						<th>날짜</th>
+						<th>시간</th>
+					</tr>
+					<tr>
+						<c:forEach items="${qna}" var="qvo">
+							<tr onclick="location.href='qnaDetail?no=${qvo.qna_no }'">
+								<td>${qvo.qna_no }</td>
+								<td><a onclick="location.href='qnaDetail?no=${qvo.qna_no }'">${qvo.title }</a></td>
+								<td>${qvo.qna_date }</td>
+								<td>${qvo.qna_time }</td>
+							</tr>
+						</c:forEach>
+				</table>
+			</div>
+		</div>
+	</div>
+	<%@include file="footer.jsp"%>
+</body>
+</html>

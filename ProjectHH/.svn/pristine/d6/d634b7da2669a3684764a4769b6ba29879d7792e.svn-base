@@ -1,0 +1,7 @@
+package com.projecthh.test;
+
+public class delete {
+	int num = 213;
+	int aasdf = 0;
+		
+}

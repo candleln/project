@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+<style type="text/css">
+#top {
+	text-align: center;
+}
+
+#container {
+	margin-top: 20%;
+	margin-left: 40%;
+	margin-right: 40%;
+	background-color: GREEN;
+	text-align: center;
+}
+
+#bottom {
+	float: right;
+}
+</style>
+</head>
+<body>
+	<div>
+		<div id="container">
+			<form action="employlogin" method="post">
+				<div id="top">
+					<h1>로그인</h1>
+				</div>
+				아이디<input type="text" id="id" name="id" placeholder="아이디를 입력하세요."><br>
+				비밀번호<input type="password" id="pw" name="pw" placeholder="비밀번호를 입력하세요."><br>
+				<div id="bottom">
+					<button type="submit">로그인</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

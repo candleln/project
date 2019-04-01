@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style type="text/css">
+header {
+	height: 100px;
+	width: 100%;
+}
+
+header div {
+	width: 100%;
+	float: left;
+}
+
+#menuCon {
+	width: 100%;
+	height: 30px;
+	margin: 0 auto;
+	padding-top: 10px;
+	background-color: #750000;
+}
+
+.menubar {
+	width: 900px;
+	margin: 0 auto;
+	text-align: center;
+	float: none;
+}
+
+.menu {
+	color: white;
+	font-weight: bold;
+	width: 300px;
+	cursor: pointer;
+}
+
+#head div {
+	width: 40%;
+	float: right;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#head a {
+	float: right;
+	padding-top: 10px; 
+	text-decoration: none;
+}
+
+img {
+	width: 200px;
+	height: 90px;
+}
+</style>
+</head>
+<header>
+<div>
+	<div id="head">
+		<img alt="" src="../../../../img/logo.PNG" onclick="location.href='/'" style="cursor: pointer;">
+		<div>
+			<c:if test="${sessionScope.employee_code ne null}">
+				<a href="elogout">로그아웃</a>
+			</c:if>
+		</div>
+	</div>
+	<div id="menuCon">
+		<div class="menubar">
+			<div class="menu" onclick="location.href='/clientList'">고객리스트</div>
+			<div class="menu" onclick="location.href='#'">컨설팅</div>
+			<div class="menu" onclick="location.href='#'">유지보수</div>
+		</div>
+	</div>
+</div>
+</header>
+

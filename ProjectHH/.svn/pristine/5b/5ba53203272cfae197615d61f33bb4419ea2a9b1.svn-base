@@ -1,0 +1,52 @@
+package com.projecthh.crm.consulting.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.projecthh.crm.consulting.DAO.ConsultingDAO;
+import com.projecthh.crm.consulting.vo.ConsultingVO;
+
+@Service("consultingService")
+public class ConsultingServiceImpl implements ConsultingService {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "consultingDAO")
+	private ConsultingDAO consultingDAO;
+
+	@Override
+	public ArrayList<ConsultingVO> searchConsulting(Map<String, Object> map) {
+		return consultingDAO.searchConsulting(map);
+	}
+
+	@Override
+	public ConsultingVO selectConsulting(String no) {
+		return consultingDAO.selectConsulting(no);
+	}
+
+	@Override
+	public void updateConsulting(Map<String, Object> map) {
+		consultingDAO.updateConsulting(map);
+	}
+
+	@Override
+	public void deleteConsulting(String no) {
+		consultingDAO.deleteConsulting(no);
+	}
+
+	@Override
+	public void insertConsulting(Map<String, Object> map) {
+		consultingDAO.insertConsulting(map);
+	}
+
+	@Override
+	public int searchConsultingCount(Map<String, Object> map) {
+		return consultingDAO.searchConsultingCount(map);
+	}
+
+}

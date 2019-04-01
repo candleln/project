@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" type="text/css" href="../../../../../css/main.css">
+</head>
+<header>
+	<div id="container">
+		<div id="h1d">
+			<a href="main"><img alt="" src="../../img/Hh.gif"></a>
+			<!--다른 텍스트나 이미지로 대체예정 -->
+		</div>
+		<div id="loginarea">
+			<c:if test="${sessionScope.set_id eq null}">
+				<a href="ulogin">로그인</a> |
+				<a href="usesig">회원가입</a>
+			</c:if>
+			<c:if test="${sessionScope.set_id ne null}">
+				<a href="userInfo?no=${sessionScope.set_id}">마이 페이지</a> |
+				<a href="logout">로그 아웃</a>
+			</c:if>
+			<c:if test="${sessionScope.manager ne null}">
+				<a href="maintenanceList">| 고객 유지보수</a>
+			</c:if>
+		</div>
+	</div>
+	<div class="menubar">
+		<div class="dropdown">
+			<button class="dropdown-button">회사소개</button>
+			<div class="dropdown-content">
+				<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropdown-button">제품소개</button>
+			<div class="dropdown-content">
+				<a href="#">1</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropdown-button">자료실?</button>
+			<div class="dropdown-content">
+				<a href="#">1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a>
+			</div>
+		</div>
+		<div class="dropdown">
+			<button class="dropdown-button">고객서비스</button>
+			<div class="dropdown-content">
+				<a href="qnaList">Qna</a> <a href="nlist">공지사항</a>
+			</div>
+		</div>
+	</div>
+</header>

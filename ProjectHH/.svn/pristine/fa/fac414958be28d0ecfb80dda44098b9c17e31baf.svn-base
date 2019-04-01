@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="downloads">
+
+	<select id="downloadsDetail" parameterType="String"
+		resultType="com.projecthh.company.downloads.vo.DownloadsVO">
+		<![CDATA[
+			SELECT title, content, DATE_FORMAT(upload_date,'%y-%m-%d') as upload_date, upload_time, attachment_file_1, attachment_file_2, attachment_file_3, delete_yn FROM downloads WHERE upload_no = #{upload_no}
+		]]>
+	</select>
+	
+	<select id="downloadsEdit" parameterType="String"
+		resultType="com.projecthh.company.downloads.vo.DownloadsVO">
+		<![CDATA[
+			SELECT title, content, DATE_FORMAT(upload_date,'%y-%m-%d') as upload_date, upload_time, attachment_file_1, attachment_file_2, attachment_file_3, delete_yn FROM downloads WHERE upload_no = #{parameter}
+		]]>
+	</select>
+
+</mapper>

@@ -1,0 +1,220 @@
+package com.projecthh.company.qna.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.projecthh.company.qna.service.QnaService;
+import com.projecthh.company.qna.vo.QnaDTO;
+
+@Controller
+public class QnaController {
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "qnaService")
+	private QnaService qnaService;
+
+	// QNA 리스트
+	@RequestMapping(value = "/qnaList")
+	public ModelAndView qnaList(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/QNA/QNALIS01");
+		int page = 0;
+		if (request.getParameter("page") != null) {
+			page = ((Integer.parseInt(request.getParameter("page"))) - 1) * 20;
+		}
+		mv.addObject("page", page);
+		
+
+		ArrayList<QnaDTO> qnalist = qnaService.qnalist(page);
+		
+		
+		if ((request.getParameter("search")) != null) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("fromDate", request.getParameter("fromDate"));
+			map.put("category",request.getParameter("category"));			
+			map.put("search", request.getParameter("search"));			
+			map.put("page", page);
+			qnalist = qnaService.search(map);
+			mv.addObject("search", map.get("search"));
+			// 없는 단어를 검색할경우			
+			if (qnalist.size() == 0) {
+				return new ModelAndView("redirect:qnaList");
+			}
+		}
+		
+		mv.addObject("qnalist", qnalist);
+		if (!qnalist.isEmpty() ) {
+			mv.addObject("total_count", qnalist.get(0).getTotal_count());
+		}else {
+			mv.addObject("total_count", 0);
+		}
+		
+
+		return mv;
+	}
+
+	// QNA 상세
+	@RequestMapping(value = "qnaDetail")
+	public ModelAndView qnaDetail(HttpServletRequest request, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/QNA/QNADET01");
+
+		String qna_no = request.getParameter("no");
+		
+		QnaDTO dto = qnaService.qnaDetail(qna_no);
+		
+		String Writer = (String) session.getAttribute("set_id");
+		/*
+		if (Writer == null) {
+			
+		}else {
+			dto.setWriter(Writer);
+		}*/
+		/* Map<dto, QnaDTO> dto1 = qnaService.qnaDetail(qna_no); */
+		mv.addObject("Writer", Writer);
+		mv.addObject("qnaDetail", dto);
+		/*System.out.println(dto.getPass());*/
+		return mv;
+	}
+	
+	// QNA 비밀번호 확인 팝업
+	@RequestMapping(value = "/qnaPassPop")
+	public ModelAndView viewpop(@RequestParam("no") String no) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/QNA/QNAPOP01");
+		mv.addObject("no", no);
+		return mv;
+	}
+
+	// QNA 팝업으로 no->pass 컬럼 전달
+	@RequestMapping(value = "qnaPassword")
+	public Map<String, Object> qnaPass(HttpServletRequest request) throws Exception {
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("qna_no", request.getParameter("no"));
+
+		String str = qnaService.matchPass(map);
+
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("result", str);
+		return resultMap;
+	}
+	// QNA 글작성 뷰
+	@RequestMapping(value = "/qnaInsert")
+	public ModelAndView qnainsert() {
+		return new ModelAndView("/company/QNA/QNAINS01");
+	}
+	//쓰기, 삭제 비밀번호 페이지
+	@RequestMapping(value = "/qnaPass")
+	public ModelAndView qnapass(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/QNA/QNAPASS");
+		Map<String, Object> map = new HashMap<String, Object>();
+		//String ss = request.getParameter("type");
+		map.put("no", request.getParameter("no"));
+		map.put("type", request.getParameter("type"));
+		/*map.put("title", request.getParameter("title"));
+		map.put("content", request.getParameter("content"));
+		map.put("private_key", request.getParameter("private"));
+		map.put("file", request.getParameter("file1"));*/
+		String pass = qnaService.password(request.getParameter("no"));
+		map.put("pass", pass);
+		/*if (ss == "update") {
+			String str = qnaService.updatepass(map);
+			map.put("password", str);
+		}else if (ss == "delete") {
+			String str = qnaService.deletepass(map);
+			map.put("password", str);
+		}*/
+		
+		mv.addObject("map",map);
+		return mv;
+	}
+
+	
+	// QNA 글작성
+	@RequestMapping(value = "qnaIns")
+	public ModelAndView qnaInsert(HttpServletRequest request, HttpSession session) throws Exception {
+		request.setCharacterEncoding("UTF-8");
+		QnaDTO dto = new QnaDTO();
+		
+		String Writer = (String) session.getAttribute("set_id");
+		dto.setTitle(request.getParameter("title"));
+		if (Writer == null) {
+			dto.setName(request.getParameter("name"));
+		}else {
+			dto.setWriter(Writer);
+		}
+		dto.setPrivate_key(request.getParameter("private"));
+		dto.setPass(request.getParameter("pass"));
+		dto.setContent(request.getParameter("content"));
+		if (request.getParameter("file1") != null) {
+
+			dto.setFile1(request.getParameter("file1"));
+		} else {
+			dto.setFile1(null);
+		}
+		qnaService.qnaInsert(dto);
+
+		return new ModelAndView("redirect:qnaList");
+	}
+	//코멘트 달기
+	@RequestMapping(value = "qnacomment")
+	public ModelAndView qnacomment(HttpServletRequest request, HttpSession session) throws Exception{
+		request.setCharacterEncoding("UTF-8");
+		/*String mng = (String) session.getAttribute("manager");*/
+		QnaDTO dto = new QnaDTO();
+		dto.setQna_no(Integer.parseInt(request.getParameter("no")));
+		dto.setComment(request.getParameter("comment"));
+		qnaService.qnacomment(dto);
+		
+		return new ModelAndView("redirect:qnaList");
+	}
+	
+	// QNA 수정
+		@RequestMapping(value = "qnaUpd")
+		public ModelAndView qnaEdit(HttpServletRequest request) throws Exception {			
+			request.setCharacterEncoding("UTF-8");
+			QnaDTO dto = new QnaDTO();
+			
+			dto.setQna_no (Integer.parseInt(request.getParameter("qna_no")));
+			dto.setTitle(request.getParameter("title"));
+			dto.setContent(request.getParameter("content"));
+			if (request.getParameter("file1") != null) {
+
+				dto.setFile1(request.getParameter("file1"));
+			} else {
+				dto.setFile1(null);
+			}
+			qnaService.qnaupdate(dto);
+			return new ModelAndView("redirect:qnaList");
+		}
+	
+		
+	//QNA 수정 페이지
+	@RequestMapping(value = "qnaupdate")
+	public ModelAndView qnaedit(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("/company/QNA/QNAEDI01");
+		QnaDTO dto = new QnaDTO();
+		dto = qnaService.qnaEdit(Integer.parseInt(request.getParameter("no")));
+		/*dto.setQna_no(Integer.parseInt(request.getParameter("no")));
+		*/
+		mv.addObject("no", dto);
+		return mv;
+	}
+
+	// QNA 삭제
+		@RequestMapping(value = "qnadelete")
+		public ModelAndView delete(HttpServletRequest request) throws Exception {
+			qnaService.qnadelete(Integer.parseInt(request.getParameter("num")));
+			
+			return new ModelAndView("redirect:qnaList");
+		}
+}

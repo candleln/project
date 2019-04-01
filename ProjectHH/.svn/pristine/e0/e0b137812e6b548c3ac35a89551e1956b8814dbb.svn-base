@@ -1,0 +1,64 @@
+package com.projecthh.company.notice.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.projecthh.company.notice.DAO.NoticeDAO;
+import com.projecthh.company.notice.vo.NoticeVO;
+
+@Service("noticeService")
+public class NoticeServiceImpl implements NoticeService {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "noticeDAO")
+	private NoticeDAO noticeDAO;
+
+	@Override
+	public void insert(NoticeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		noticeDAO.insert(vo);
+	}
+
+	@Override
+	public NoticeVO noticeDetail(String parameter) {
+		// TODO Auto-generated method stub
+		return noticeDAO.noticeDetail(parameter);
+	}
+
+	@Override
+	public void noticedelete(int parseInt) {
+		// TODO Auto-generated method stub
+		noticeDAO.noticeDelete(parseInt);
+	}
+
+	@Override
+	public NoticeVO noticeEdit(String parameter) {
+		// TODO Auto-generated method stub
+		return noticeDAO.noticeEdit(parameter);
+	}
+
+	@Override
+	public void edit(NoticeVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		noticeDAO.edit(vo);
+	}
+
+	@Override
+	public ArrayList<NoticeVO> noticeList(int page) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.noticeList(page);
+	}
+
+	@Override
+	public ArrayList<NoticeVO> search(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return noticeDAO.search(map);
+	}
+
+}

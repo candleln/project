@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+section {
+	border: 1px solid PURPLE;
+	margin: 0 auto;
+	width: 1220px;
+}
+
+#searching {
+	width: 270px;
+	border: 1px solid RED;
+	float: right;
+}
+
+#button {
+	float: right;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+th, td {
+	border-bottom: 1px BLACK solid;
+}
+
+.title {
+	width: 40%;
+}
+
+button {
+	float: right;
+}
+
+.page {
+	width: 1027px;
+	float: left;
+	text-align: center;
+}
+
+#paging{
+	float: 
+}
+
+#container {
+	width: 1220px;
+	height: 750px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+#nListTable {
+	width: 1120px;
+	height: 600px;
+	border: 1px solid YELLOW;
+	padding: 50px;
+}
+
+#nTitle {
+	border: 1px solid BLUE;
+}
+
+#paging {
+	border: 1px solid GREEN;
+}

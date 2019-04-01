@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<style type="text/css">
+footer {
+	width: 100%;
+	text-align: center;
+	border: 1px black solid;
+}
+</style>
+<footer>
+		<a href="main"><img alt="" src="../../img/Hh.gif"></a>
+		<a href="">안내전화 0000-0000-0000</a>
+		| <a href="">법적고지</a>
+		| <a href="">개인정보취급방침</a>
+		| <a href="">rss</a>
+		| <a href="">오시는길</a>
+		<br>Copyright ⓒ Hh Corp.All Rights Reserved.
+</footer>

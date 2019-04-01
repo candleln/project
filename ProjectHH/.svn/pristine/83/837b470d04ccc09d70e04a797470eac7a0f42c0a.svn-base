@@ -1,0 +1,151 @@
+@charset "UTF-8";
+
+body {
+	margin: 0 auto;
+}
+
+#container {
+	margin: 0 auto;
+	width: 1220px;
+	height: auto;
+	text-align: center;
+}
+
+section {
+	margin: 0 auto;
+	width: 900px;
+	height: auto;
+	text-align: center;
+	padding: 30px;
+}
+
+#top, p {
+	margin: 10px;
+	padding-top: 20px;
+	height: 60px;
+	text-align: left;
+}
+
+hr {
+	border-bottom : 1px #750000 solid;
+}
+
+.right {
+	margin: 10px;
+	padding: 10px;
+	width: 1120px;
+	float: right;
+	text-align: right;
+}
+
+table {
+	width: 1120px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+th, td {
+	padding: 10px;
+	border-bottom: 1px solid silver;
+}
+#exampleRow:hover {
+	background-color: silver;
+}
+
+#pagiNation {
+	padding: 20px;	
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 1000px;
+}
+
+.title {
+	width: 35%;
+}
+
+a, button {
+	cursor: pointer;
+}
+a {
+	margin: 5px;
+}
+
+input {
+	height: 14px;
+	padding: 3px;
+	vertical-align: top;
+}
+
+#fromDate, #toDate {
+	width: 100px;
+}
+select {
+	height: 24px;
+	margin-left: 10px;
+	vertical-align: top;
+}
+
+.form {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px;
+}
+
+.form div {
+	width: 800px;
+	float: left;
+}
+
+.form div input {
+	width: 600px;
+	float: right;
+	margin: 5px;
+}
+
+.form textarea {
+	width: 600px;
+	height: 150px;
+	margin: 5px;
+	padding: 3px;
+	float: right;
+}
+
+.span {
+	float: left;
+    margin-left: 60px;
+    margin-bottom: 10px;
+}
+
+div .half {
+	width: 400px;
+	float: left;
+}
+div .half input {
+	width: 200px;
+	float: right;
+}
+div label {
+	width: 80px;
+	float: left;
+	text-align: left;
+	margin-right: 10px;
+}
+.form label input {
+	width: 20px;
+}
+
+small {
+	float: left;
+    margin: 5px;
+}
+
+.bottom button{
+	float: right;
+	margin: 5px;
+	margin-top: 20px;
+}
+
+#file {
+	height: 20px;
+}

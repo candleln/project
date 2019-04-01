@@ -1,0 +1,40 @@
+package com.projecthh.crm.consulting.DAO;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.crm.consulting.vo.ConsultingVO;
+
+@Repository("consultingDAO")
+public class ConsultingDAO extends AbstractDAO {
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<ConsultingVO> searchConsulting(Map<String, Object> map) {
+		return (ArrayList<ConsultingVO>) selectList("consulting.consultingList", map);
+	}
+
+	public ConsultingVO selectConsulting(String no) {
+		return (ConsultingVO) selectOne("consulting.selectConsulting", no);
+	}
+
+	public void updateConsulting(Map<String, Object> map) {
+		update("consulting.updateConsulting", map);
+	}
+
+	public void deleteConsulting(String no) {
+		update("consulting.deleteConsulting", no);
+	}
+
+	public void insertConsulting(Map<String, Object> map) {
+		insert("consulting.insertConsulting", map);
+	}
+
+	public int searchConsultingCount(Map<String, Object> map) {
+		return (Integer) selectOne("consulting.consultingListCount", map);
+	}
+	
+
+}

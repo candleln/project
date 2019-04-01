@@ -1,0 +1,50 @@
+@charset "UTF-8";
+body {
+	margin: 0 auto;
+}
+
+section {
+	margin: 0 auto;
+	width: 550px;
+	height: auto;
+	text-align: center;
+}
+
+h2 {
+	margin: 30px;
+}
+
+form {
+	margin: 10px;
+	padding: 10px;
+}
+
+form div {
+	width: 500px;
+	float: left;
+	font-weight: bold;
+	text-align: left;
+	padding: 3px;
+}
+
+form div input {
+	width: 200px;
+	height: 20px;
+	float: right;
+	margin: 5px;
+	padding: 3px;
+}
+
+form .bottom button{
+	float: right;
+	margin: 5px;
+	margin-top: 20px;
+}
+
+span {
+	font-size: small;
+	font-weight: normal;
+	color: red;
+	float: right;
+	margin-right: 10px;
+}

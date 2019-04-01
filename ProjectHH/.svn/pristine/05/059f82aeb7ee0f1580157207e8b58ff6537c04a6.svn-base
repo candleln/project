@@ -1,0 +1,63 @@
+<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FAQ</title>
+<style type="text/css">
+section {
+margin: 0 auto; width: 1027px;
+}
+.searching {
+float: right;
+}
+table {
+margin: 10px;
+width: 1000px;
+text-align: center;
+}
+th, td {
+border: 1px silver solid;
+}
+.title {
+width: 50%;
+}
+button {
+float: right;
+}
+.container {
+width: 1000px;
+padding: 20px;
+background-color: silver;
+}
+li {
+margin:10px;
+padding: 10px;
+background-color: white;
+}
+img {
+width: 20px;
+float: right;
+}
+</style>
+</head>
+<body>
+	<section>
+	FAQ
+		<div class="container">
+			<ul>
+				<li>FAQ1<img alt="" src="">
+				<!-- script 클릭 시 드롭다운 -->
+				<hr>
+					<ul>
+						<li>펼친 내용</li>
+					</ul>
+				</li>
+				<li>FAQ2</li>
+				<li>FAQ3</li>
+			</ul>
+		</div>
+	</section>
+</body>
+</html>

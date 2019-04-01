@@ -1,0 +1,48 @@
+package com.projecthh.crm.client.DAO;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.company.user.vo.UserVO;
+import com.projecthh.crm.client.vo.ClientVO;
+
+@Repository("clientDAO")
+public class ClientDAO extends AbstractDAO {
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<ClientVO> searchClient(Map<String, Object> map) {
+		return (ArrayList<ClientVO>) selectList("client.clientList", map);									
+	}
+
+	public ClientVO selectClient(String no) {
+		return (ClientVO) selectOne("client.selectClient", no);
+	}
+
+	public void updateClient(Map<String, Object> commandMap) {
+		update("client.updateClient", commandMap);
+	}
+
+	public void deleteClient(String no) {
+		update("client.deleteClient", no);
+	}
+
+	public void insertClient(Map<String, Object> commandMap) {
+		insert("client.insertClient", commandMap);
+	}
+
+	public String selectNo(String bno) {
+		return (String) selectOne("client.selectNo", bno);
+	}
+	
+	public int searchClientCount(Map<String, Object> map) {
+		return (Integer)selectOne("client.clientListCount", map);									
+	}
+
+	public ClientVO login(ClientVO vo) {
+
+		return (ClientVO) selectOne("elogin", vo);
+	}
+}

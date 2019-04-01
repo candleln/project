@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consulting">
+	<select id="consultingList" parameterType="HashMap" resultType="com.projecthh.crm.consulting.vo.ConsultingVO">
+		(SELECT consulting_no, completion_yn, business_name, business_no, DATE_FORMAT(regist_date, '%Y-%m-%d') as regist_date
+		FROM consulting WHERE delete_yn = 'N'
+        <if test="category != null and !category.equals('')">
+        	AND
+        	<choose>
+        	<when test='category == "0"'>
+            (business_name LIKE CONCAT('%', #{search}, '%') or business_no LIKE CONCAT('%', #{search}, '%'))
+            </when>
+ 	      	<when test='category == "1"'> 
+        	business_name LIKE CONCAT('%',#{search},'%') 
+        	</when>
+        	<when test='category == "2"'>
+        	<![CDATA[
+        	business_no LIKE CONCAT('%',#{search},'%')
+        	]]>
+        	</when>
+        	</choose>
+	        <if test="fromDate != null and !fromDate.equals('')">
+		        <![CDATA[
+					AND #{fromDate} <= DATE_FORMAT(regist_date, '%Y-%m-%d')
+		        ]]>
+	        </if>
+	        <if test="toDate != null and !toDate.equals('')">
+		        <![CDATA[
+					AND DATE_FORMAT(regist_date, '%Y-%m-%d') <= #{toDate}
+		        ]]>
+	        </if>
+        </if>
+ 			ORDER BY consulting_no DESC limit #{page}, 10) ORDER BY consulting_no ASC
+	</select>
+	
+	<select id="consultingListCount" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) FROM consulting WHERE delete_yn = 'N'  
+			<if test="category != null and !category.equals('')">
+        	AND
+	        	<choose>
+	        	<when test='category == "0"'>
+	            (business_name LIKE CONCAT('%', #{search}, '%') or business_no LIKE CONCAT('%', #{search}, '%'))
+	            </when>
+	 	      	<when test='category == "1"'> 
+	        	business_name LIKE CONCAT('%',#{search},'%') 
+	        	</when>
+	        	<when test='category == "2"'>
+	        	<![CDATA[
+	        	business_no LIKE CONCAT('%',#{search},'%')
+	        	]]>
+	        	</when>
+	        	</choose>
+		        <if test="fromDate != null and !fromDate.equals('')">
+			        <![CDATA[
+						AND #{fromDate} <= DATE_FORMAT(regist_date, '%Y-%m-%d')
+			        ]]>
+		        </if>
+		        <if test="toDate != null and !toDate.equals('')">
+			        <![CDATA[
+						AND DATE_FORMAT(regist_date, '%Y-%m-%d') <= #{toDate}
+			        ]]>
+		        </if>
+       		</if>
+	</select>
+	
+	<select id="selectConsulting" parameterType="String" resultType="com.projecthh.crm.consulting.vo.ConsultingVO">
+		 <![CDATA[
+			SELECT consulting_no, consulting_contents, note, completion_yn, delete_yn, CONCAT(name,'(', e.employee_code,')') AS employee_code, 
+			business_name, business_no, manager_department, manager_position, manager_name, manager_tel, manager_mobile, manager_email, 
+			DATE_FORMAT(regist_date, '%Y-%m-%d') as regist_date, TIME_FORMAT(regist_time, '%H:%i:%s') as regist_time, file
+			FROM consulting c JOIN employee e ON c.employee_code = e.employee_code WHERE delete_yn = 'N' AND consulting_no = #{no}
+		]]>
+	</select>
+
+	<update id="updateConsulting" parameterType="hashmap">
+		 <![CDATA[
+			UPDATE consulting SET consulting_contents = #{consulting_contents}, business_name = #{business_name}, completion_yn = #{completion_yn},
+			manager_name = #{manager_name}, manager_department = #{manager_department}, manager_position = #{manager_position}, manager_tel = #{manager_tel}, 
+			manager_mobile = #{manager_mobile}, manager_email = #{manager_email}, note = #{note}, employee_code = #{employee_code}
+			WHERE consulting_no = #{consulting_no}
+		]]>
+	</update>
+	
+	<update id="deleteConsulting" parameterType="hashmap">
+			UPDATE consulting SET delete_yn = 'Y' WHERE consulting_no = #{consulting_no}
+	</update>
+	
+	<insert id="insertConsulting" parameterType="hashmap">
+		 <![CDATA[
+			INSERT INTO consulting (consulting_contents, note, file, completion_yn, employee_code, business_name, business_no, 
+			manager_department, manager_position, manager_name, manager_tel, manager_mobile, manager_email, regist_date, regist_time) 
+			VALUES (#{consulting_contents}, #{note}, #{file}, #{completion_yn}, #{employee_code}, #{business_name}, #{business_no}, 
+			#{manager_department}, #{manager_position}, #{manager_name}, #{manager_tel}, #{manager_mobile}, #{manager_email}, 
+			DATE_FORMAT(now(),'%Y%m%d'), TIME_FORMAT(now(),'%H%i%s'))
+		]]>
+		<selectKey keyProperty="consulting_no" resultType="String">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+</mapper>

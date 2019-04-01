@@ -1,0 +1,79 @@
+package com.projecthh.company.downloads.vo;
+
+public class DownloadsVO {
+	private int upload_no;
+	private String title, content, upload_date, upload_time, attachment_file_1, attachment_file_2, attachment_file_3,
+			delete_yn;
+
+	public int getUpload_no() {
+		return upload_no;
+	}
+
+	public void setUpload_no(int upload_no) {
+		this.upload_no = upload_no;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getUpload_date() {
+		return upload_date;
+	}
+
+	public void setUpload_date(String upload_date) {
+		this.upload_date = upload_date;
+	}
+
+	public String getUpload_time() {
+		return upload_time;
+	}
+
+	public void setUpload_time(String upload_time) {
+		this.upload_time = upload_time;
+	}
+
+	public String getAttachment_file_1() {
+		return attachment_file_1;
+	}
+
+	public void setAttachment_file_1(String attachment_file_1) {
+		this.attachment_file_1 = attachment_file_1;
+	}
+
+	public String getAttachment_file_2() {
+		return attachment_file_2;
+	}
+
+	public void setAttachment_file_2(String attachment_file_2) {
+		this.attachment_file_2 = attachment_file_2;
+	}
+
+	public String getAttachment_file_3() {
+		return attachment_file_3;
+	}
+
+	public void setAttachment_file_3(String attachment_file_3) {
+		this.attachment_file_3 = attachment_file_3;
+	}
+
+	public String getDelete_yn() {
+		return delete_yn;
+	}
+
+	public void setDelete_yn(String delete_yn) {
+		this.delete_yn = delete_yn;
+	}
+}

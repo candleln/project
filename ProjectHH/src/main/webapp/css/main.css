@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+@font-face { 
+	font-family: 'S-CoreDream-3Light'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-3Light.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+	
+body {
+	margin: 0 auto;
+	z-index: 1;
+	font-family: 'S-CoreDream-3Light'; 
+}
+
+/* #slider {
+	margin: 0 auto;
+	width: 100%;
+	padding-top: 170px;
+	position: relative;
+	overflow: hidden;
+}
+
+#slider img {
+	margin: 0 auto;
+	width: 100%;
+	height: 700px;
+	float: left;
+}
+
+.img_wrap {
+	position: relative;
+	width: 100%;
+}
+
+.control_wrap{
+    position:absolute;
+    top:845px;
+    left:49%;
+    height: 13px;
+    overflow: hidden;
+}
+
+.control_btn{
+	margin-left: 5px;
+    position:relative;
+    width:13px;
+    height:46px;
+    float:left;
+    cursor: pointer;
+    background-image: url('../img/point_button.png');
+}
+
+.control_btn:hover {
+	top:-16px;
+}
+.control_btn.active {
+	top:-31px;
+} */
+.slides {
+	display: none;
+	margin: 0 auto;
+	width: 100%;
+	padding-top: 170px;
+	overflow: hidden;
+}
+
+.slides img {
+	width: 100%;
+	height: 700px;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  margin: auto;
+}
+
+/* The dots/bullets/indicators */
+.control_btn {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+#container {
+	margin: 0 auto;
+	padding-top: 50px;
+	width: 1220px;
+	height: 500px;
+}
+
+#notice {
+	border: 1px #e9e9e9 solid;
+	height: 400px;
+	width: 600px;
+	float: left;
+	text-align: center;
+}
+
+#qna {
+	border: 1px #e9e9e9 solid;
+	height: 400px;
+	width: 600px;
+	float: right;
+	text-align: center;
+}
+
+#list {
+	text-align: center;
+}
+
+table {
+	margin: 0 auto;
+	width: 95%;
+	border: 1px black solid;
+}
+
+.row {
+	cursor: pointer;
+}
+
+.row:hover {
+	color: #d8dce7;
+}
+
+th {
+	border-bottom: 1px black solid;
+}
+
+th, td {
+	height: 40px;
+}
+
+.title {
+	width: 40%;
+}

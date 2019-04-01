@@ -1,0 +1,93 @@
+package com.projecthh.company.qna.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.projecthh.company.qna.DAO.QnaDAO;
+import com.projecthh.company.qna.vo.QnaDTO;
+
+@Service("qnaService")
+public class QnaServiceImpl implements QnaService {
+	
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "qnaDAO")
+	private QnaDAO qnaDAO;
+
+	@Override
+	public ArrayList<QnaDTO> qnalist(int page) throws Exception {
+
+		return qnaDAO.qnaList(page);
+	}
+
+	@Override
+	public QnaDTO qnaDetail(String qna_no) throws Exception {
+		
+		return qnaDAO.qnaDetail(qna_no);
+	}
+
+	@Override
+	public String matchPass(Map<String, String> map) {
+
+		return qnaDAO.matchPass(map);
+	}
+
+	@Override
+	public void qnaInsert(QnaDTO dto) throws Exception {	
+		qnaDAO.qnaInsert(dto);
+	}
+
+	@Override
+	public String deletepass(Map<String, Object> map) {
+
+		return qnaDAO.deletepass(map);
+	}
+
+	@Override
+	public String password(String parameter) {
+
+		return qnaDAO.password(parameter);
+	}
+
+	@Override
+	public void qnaupdate(QnaDTO dto) {
+
+		qnaDAO.qnaupdate(dto);
+	}
+
+	@Override
+	public void qnadelete(int parseInt) throws Exception {
+
+		qnaDAO.qnaDelete(parseInt);
+	}
+
+	@Override
+	public void qnacomment(QnaDTO dto) {
+		qnaDAO.qnacomment(dto);
+		
+	}
+
+	@Override
+	public QnaDTO qnaEdit(int parseInt) {
+		
+		return qnaDAO.qnaEdit(parseInt);
+	}
+
+	@Override
+	public ArrayList<QnaDTO> search(Map<String, Object> map) throws Exception {
+
+		return qnaDAO.search(map);
+	}
+
+	@Override
+	public int searchQnaCount(Map<String, Object> map) {
+
+		return qnaDAO.searchQnaCount(map);
+	}
+
+}

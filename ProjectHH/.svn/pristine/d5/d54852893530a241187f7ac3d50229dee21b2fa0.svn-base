@@ -1,0 +1,23 @@
+package com.projecthh.crm.consulting.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.projecthh.crm.consulting.vo.ConsultingVO;
+
+public interface ConsultingService {
+
+	ArrayList<ConsultingVO> searchConsulting(Map<String, Object> map) throws Exception;
+
+	ConsultingVO selectConsulting(String no) throws Exception;
+
+	void updateConsulting(Map<String, Object> map) throws Exception;
+
+	void deleteConsulting(String no) throws Exception;
+
+	void insertConsulting(Map<String, Object> map);
+
+	int searchConsultingCount(Map<String, Object> map);
+
+
+}

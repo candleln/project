@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+header {
+	margin: 0 auto;
+	height: 180px;
+	width: 100%;
+	background-color: white;
+	position: fixed;
+	z-index: 2;
+	font-family: 'S-CoreDream-3Light'; 
+}
+
+header div {
+	float: left;
+}
+
+header section {
+	margin: 0 auto;
+	width: 100%;
+	height: 120px;
+	text-align: center;
+	float: left;
+}
+
+#img {
+	width: 100%;
+	height: 90px;	
+	padding-bottom: 5px;
+}
+
+#img img {
+	width: 200px;
+	height: 90px;
+	margin: 0 auto;
+}
+
+#loginarea {
+	padding-top: 10px;
+	width: 100%;
+	height: 30px;
+	background-color: #222838;
+	padding-right: 20px;
+}
+
+#loginarea div {
+	width: 20%;
+	float: right;
+}
+
+#loginarea a {
+	color: white;
+}
+
+#menubar {
+	width: 100%;
+	height: 50px;
+	text-align: center;
+	color: #222838;
+}
+
+#menubar ul {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+#menubar ul li {
+	font-size: 18px;
+	padding-top: 15px;
+	width: 25%;
+	list-style-type:none;
+	float: left;
+	font-weight: bold;
+}
+
+#menubar ul ul li {
+	float: none;
+	font-size: 16px;
+	text-align: center;
+	padding-bottom: 15px;
+	background-color: white;
+	font-weight: normal;
+}
+
+#menubar ul ul {
+	display: none;
+	margin-top: 18px;
+}
+
+#menubar ul li:hover ul {
+	display: block;
+}
+
+.adbox {
+	border: 1px black solid;
+	border: 1px white solid;
+	height: 300px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+a:hover {
+	color: #d8dce7;
+}
+
+footer {
+	width: 100%;
+	height: 150px;
+	position: absolute;
+    bottom: 0;
+	text-align: center;
+	background-color: #222838;
+	color: white;
+}
+
+footer div {
+	padding: 50px;
+}
+
+footer a {
+	color: white;
+}

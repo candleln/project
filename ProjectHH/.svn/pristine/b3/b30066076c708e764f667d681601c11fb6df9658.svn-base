@@ -1,0 +1,20 @@
+package com.projecthh.crm.maintenance.service;
+
+import java.util.ArrayList;
+
+import com.projecthh.crm.maintenance.vo.MaintenanceVO;
+
+public interface MaintenanceService {
+
+	ArrayList<MaintenanceVO> maintenanceList(int page) throws Exception;
+
+	void maintenanceDel(int m_no);
+
+	ArrayList<MaintenanceVO> maintenanceSearch(int page, String key) throws Exception;
+
+	MaintenanceVO maintenanceDetail(int m_no);
+
+	void mainInsert(MaintenanceVO mvo);
+
+	void mainUpdate(MaintenanceVO mvo);
+}

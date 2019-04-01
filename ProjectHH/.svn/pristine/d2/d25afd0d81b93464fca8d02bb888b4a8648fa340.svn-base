@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script type="text/javascript">
+		function pw1() {
+			alert("추가 정보를 입력");
+		}
+	</script>
+</head>
+<body>
+	<div align="center">
+		<h2>찾은 아이디</h2><br>
+		<input type="text" value="adw****"><button>로그인</button><br>
+		<br>
+		<br>
+		<h2>찾은 비밀번호</h2><br>
+		<input type="text" value="158********"><button>로그인</button><br>
+		<button name="pw1" onclick="pw1();">임시비밀번호 발급</button>
+	</div>
+
+</body>
+</html>

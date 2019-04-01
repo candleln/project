@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>consulting</title>
+</head>
+<body>
+<div align="center">
+	<h3>consulting...</h3><br>
+	상호명 : <input type="text">
+	사업자 번호 : <input type="text">
+	대표 전화번호 : <input type="text"><br>
+	담당자 : <input type="text">
+	전화번호 : <input type="text" placeholder="'-'자를 제외하고 적어주세요.">
+	이메일 : <input type="text"><br>
+	문의내용<br>
+	<textarea rows="50px" cols="133px"></textarea><br>
+	<div align="right" style="width: 50%">
+		<input type="submit" value="등록">
+		<button>취소</button>
+	</div>
+</div>	
+</body>
+</html>

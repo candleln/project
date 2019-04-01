@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="client">
+	<select id="clientList" parameterType="HashMap" resultType="com.projecthh.crm.client.vo.ClientVO">
+		(SELECT client_no, business_name, business_no, DATE_FORMAT(regist_date, '%Y-%m-%d') as regist_date
+		FROM client WHERE delete_yn = 'N' 
+        <if test="category != null and !category.equals('')">
+        	AND
+        	<choose>
+	        	<when test='category == "0"'>
+	            (business_name LIKE CONCAT('%', #{search}, '%') or business_no LIKE CONCAT('%', #{search}, '%'))
+	            </when>
+	 	      	<when test='category == "1"'> 
+	        	business_name LIKE CONCAT('%',#{search},'%') 
+	        	</when>
+	        	<when test='category == "2"'>
+	        	<![CDATA[
+	        	business_no LIKE CONCAT('%',#{search},'%')
+	        	]]>
+	        	</when>
+        	</choose>
+	        <if test="fromDate != null and !fromDate.equals('')">
+		        <![CDATA[
+					AND #{fromDate} <= DATE_FORMAT(regist_date, '%Y-%m-%d')
+		        ]]>
+	        </if>
+	        <if test="toDate != null and !toDate.equals('')">
+		        <![CDATA[
+					AND DATE_FORMAT(regist_date, '%Y-%m-%d') <= #{toDate}
+		        ]]>
+	        </if>
+        </if>
+ 			ORDER BY client_no DESC limit #{page}, 10) ORDER BY client_no ASC
+	</select>
+
+	<select id="selectClient" parameterType="String" resultType="com.projecthh.crm.client.vo.ClientVO">
+		 <![CDATA[
+			SELECT client_no, business_name, business_no, business_tel, business_addr, manager_name, manager_department, manager_position,
+			manager_tel, manager_mobile, manager_email, note, DATE_FORMAT(regist_date, '%Y-%m-%d') as regist_date, TIME_FORMAT(regist_time, '%H:%i:%s') as regist_time
+			FROM client WHERE delete_yn = 'N' AND client_no = #{no}
+		]]>
+	</select>
+
+	<update id="updateClient" parameterType="hashmap">
+		 <![CDATA[
+			UPDATE client SET business_name = #{business_name}, business_tel = #{business_tel}, business_addr = #{business_addr}, 
+			manager_name = #{manager_name}, manager_department = #{manager_department}, manager_position = #{manager_position}, 
+			manager_tel = #{manager_tel}, manager_mobile = #{manager_mobile}, manager_email = #{manager_email}, note = #{note}
+			WHERE client_no = #{client_no}
+		]]>
+	</update>
+	
+	<update id="deleteClient" parameterType="hashmap">
+			UPDATE client SET delete_yn = 'Y' WHERE client_no = #{client_no}
+	</update>
+	
+	<insert id="insertClient" parameterType="hashmap">
+		 <![CDATA[
+			INSERT INTO client (business_name, business_no, business_tel, business_addr, manager_name, manager_department, manager_position, 
+			manager_tel, manager_mobile, manager_email, note, regist_date, regist_time) 
+			values (#{business_name}, #{business_no}, #{business_tel}, #{business_addr}, #{manager_name}, #{manager_department}, #{manager_position}, 
+			#{manager_tel}, #{manager_mobile}, #{manager_email}, #{note}, DATE_FORMAT(now(),'%Y%m%d'), TIME_FORMAT(now(),'%H%i%s'))
+		]]>
+		<selectKey keyProperty="client_no" resultType="String">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<select id="elogin" resultType="com.projecthh.crm.client.vo.ClientVO">
+        <![CDATA[
+			SELECT * FROM employee WHERE id = #{id} AND pw = #{pw}
+        ]]>
+	</select>
+	
+	<select id="selectNo" parameterType="String" resultType="String">
+		SELECT client_no FROM client WHERE business_no = #{bno} AND delete_yn = 'N'
+	</select>
+	
+	<select id="clientListCount" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) FROM client WHERE delete_yn = 'N'  
+			<if test="category != null and !category.equals('')">
+        	AND
+	        	<choose>
+	        	<when test='category == "0"'>
+	               (business_name LIKE CONCAT('%', #{search}, '%') or business_no LIKE CONCAT('%', #{search}, '%'))
+	            </when>
+	 	      	<when test='category == "1"'> 
+	        	business_name LIKE CONCAT('%',#{search},'%') 
+	        	</when>
+	        	<when test='category == "2"'>
+	        	<![CDATA[
+	        	business_no LIKE CONCAT('%',#{search},'%')
+	        	]]>
+	        	</when>
+	        	</choose>
+		        <if test="fromDate != null and !fromDate.equals('')">
+			        <![CDATA[
+						AND #{fromDate} <= DATE_FORMAT(regist_date, '%Y-%m-%d')
+			        ]]>
+		        </if>
+		        <if test="toDate != null and !toDate.equals('')">
+			        <![CDATA[
+						AND DATE_FORMAT(regist_date, '%Y-%m-%d') <= #{toDate}
+			        ]]>
+		        </if>
+       		</if>
+	</select>
+</mapper>

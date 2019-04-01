@@ -1,0 +1,32 @@
+package com.projecthh.company.downloads.service;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.projecthh.company.downloads.DAO.DownloadsDAO;
+import com.projecthh.company.downloads.vo.DownloadsVO;
+
+@Service("downloadsService")
+public class DownloadsServiceImpl implements DownloadsService {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "downloadsDAO")
+	private DownloadsDAO downloadsDAO;
+
+	@Override
+	public ArrayList<DownloadsVO> downloadsDetail(String upload_no) throws Exception {
+		// TODO Auto-generated method stub
+		return downloadsDAO.downloadsDetail(upload_no);
+	}
+
+	@Override
+	public ArrayList<DownloadsVO> downloadsEdit(String parameter) throws Exception {
+		// TODO Auto-generated method stub
+		return downloadsDAO.downloasdEdit(parameter);
+	}
+}

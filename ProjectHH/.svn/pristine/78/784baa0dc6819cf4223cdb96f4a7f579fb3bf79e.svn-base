@@ -1,0 +1,117 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>유지보수 수정</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<style type="text/css">
+#top {
+	padding-top: 10px;	
+	text-align: center;
+	height: 100px;
+}
+
+#container {
+	margin-left: 30%;
+	margin-right: 30%
+}
+
+#bottom {
+	float: right;
+}
+
+table {
+	border-collapse: collapse;
+	width: 800px;
+}
+
+th, td {
+	padding: 10px;
+	border-bottom: 1px solid BLACK;
+}
+</style>
+<script type="text/javascript">
+	function checkIns() { 		
+		var business_no = document.mainUpdate.business_no;
+		if (business_no.value == "") {
+			alert("사업번호 입력해주세요.");
+			business_no.focus();
+			return false;
+		}
+
+		var employee_code = document.mainUpdate.employee_code;
+		if (employee_code.value == "") {
+			alert("사원번호를 입력해주세요.");
+			employee_code.focus();
+			return false;
+		}
+
+		var title = document.mainUpdate.title;
+		if (title.value == "") {
+			alert("제목을 입력해주세요.");
+			title.focus();
+			return false;
+		}
+		var note = document.mainUpdate.note;
+		if (note.value() == "") {
+			alert("비고를 넣어주세요.");
+			note.focus();
+			return false;
+		}
+
+	}
+	
+	
+</script>
+</head>
+<body>
+	<div>
+	<%@include file="../empMenu.jsp"%>
+		<div id="top">
+			<h1>유지보수 수정</h1>
+		</div>
+		<div id="container">		
+			<form action="mainUpdate?page=${mainDetail.page }&keyword=${mainDetail.search}" name="mainUpdate" method="post" enctype="multipart/form-data">
+			<c:choose>	
+					<c:when test="${mainDetail ne null}">		
+					<input type="hidden" name="type" value="update">
+					<input type="hidden" name="maintenance_no" value="${mainDetail.maintenance_no }">	
+						<div>
+							사업자 등록 번호 <input name = "business_no" type="text" value="${mainDetail.business_no }" disabled="disabled">
+						</div>
+						<hr>담당자
+						<div>
+							이름<input type="text" name="employee_code" placeholder="employee code" value="${mainDetail.employee_code }" >
+						</div>
+						<hr>
+						<div>
+							제목<input type="text" name="title" placeholder="title" value="${mainDetail.title }">
+						</div>
+						<div>
+							비고
+							<textarea rows="" cols="" style="size: auto;" name = "note">${mainDetail.note }</textarea>
+						</div>
+							등록일시 <input type="text" value="${mainDetail.regist_date }" disabled="disabled">
+							<input type="text" value="${mainDetail.regist_time }" disabled="disabled">
+						<div>
+							<input type="file" name="file" value="${mainDetail.attachment_file }">
+							<img alt="img" src="././resources/${mainDetail.attachment_file }">
+						</div>						
+				<div id="bottom">
+					<button type="submit"  onclick="return checkIns();">수정</button>
+					<button type="reset">초기화</button>
+				</div>
+				</c:when>
+				</c:choose>
+			</form>
+			<hr>
+			<button onclick="location.href='#'">문의내역</button>
+			<button onclick="location.href='MAILIS01'">유지보수</button>
+		</div>
+	</div>	
+</body>
+</html>

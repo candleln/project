@@ -1,0 +1,47 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="../../../../css/mypage.css" rel="stylesheet">
+</head>
+<body>
+	<div id="container">
+		<section>
+			<div id="top">
+				<h1>마이페이지 수정</h1>
+			</div>
+			<hr>
+			<form action="infupdate" method="post">
+				<div id="container">
+					<input type="hidden" id="user_no" name="user_no"
+						value="${dto.user_no }">
+					<table>
+						<tr>
+							<th>이름</th>
+							<td colspan="3"><input type="text" name="name" id="name"
+								value="${dto.name }"></td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td colspan="3"><input type="text" name="addr" id="addr"
+								value="${dto.address }"></td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td colspan="3"><input type="text" name="tel" id="tel"
+								value="${dto.tel }"></td>
+						</tr>
+					</table>
+					<div class = "right">
+						<button type="submit">수정</button>
+						<button type="button" onclick="location.href='userInfo?no=${dto.id}'">취소</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+</body>
+</html>

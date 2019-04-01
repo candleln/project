@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />
+<script type="text/javascript">
+
+        $("#btnPWinput").click(function() {
+    	    $.ajax({
+    	        url: 'qnaPassword',
+    	        data: $('form').find('#input').val(),
+    	        contentType: 'application/x-www-form-urlencoded; charset=UTF-8', 
+    	        success: function (data) {
+    	        	//여기에 디비에서 가져온 ps
+    	        	
+    	        	if(data.result ==  $('#input').val()) {
+    	        		alert("정답!!");
+    	        		/* opener.document.location.href = /qnaDetail?no=8';' */
+    	        	} else {
+    	        		alert("틀렸습니다. 다시 입력하세요.");
+    	        	}
+    	        }
+    	    });
+    	    return false;
+    	});
+</script>
+<body>
+<form>
+비밀번호 : <input type="text" id = "input" value=""><br>
+<button id="btnPWinput">입력</button>
+</form>
+<button onclick="window.close()">취소</button>
+<h1 id = "hahaha"></h1>
+<input type="text" id="no" value="${no }"> 
+</body>
+</html>

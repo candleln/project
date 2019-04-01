@@ -1,0 +1,55 @@
+package com.projecthh.crm.maintenance.service;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import com.projecthh.crm.maintenance.DAO.MaintenanceDAO;
+import com.projecthh.crm.maintenance.vo.MaintenanceVO;
+
+@Service("maintenanceService")
+public class MaintenanceServiceImpl implements MaintenanceService {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "maintenanceDAO")
+	private MaintenanceDAO maintenanceDAO;
+
+	@Override
+	public ArrayList<MaintenanceVO> maintenanceList(int page) throws Exception {
+
+		return maintenanceDAO.maintenanceList(page);
+	}
+
+	@Override
+	public void maintenanceDel(int m_no) {
+		maintenanceDAO.maintenanceDel(m_no);
+		
+	}
+
+	@Override
+	public ArrayList<MaintenanceVO> maintenanceSearch(int page,String key) throws Exception {
+
+		return maintenanceDAO.maintenanceSearch(page,key);
+	}
+
+	@Override
+	public MaintenanceVO maintenanceDetail(int m_no) {
+
+		return maintenanceDAO.maintenanceDetail(m_no);
+	}
+
+	@Override
+	public void mainInsert(MaintenanceVO mvo) {
+		maintenanceDAO.mainInsert(mvo);		
+	}
+
+	@Override
+	public void mainUpdate(MaintenanceVO mvo) {
+		maintenanceDAO.mainUpdate(mvo);
+	}
+	
+}

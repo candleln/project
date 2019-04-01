@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="maintenance">
+	<select id="maintenanceList"
+		resultType="com.projecthh.crm.maintenance.vo.MaintenanceVO">
+        <![CDATA[
+		SELECT maintenance_no, employee_code, 
+		(select business_name from client c where c.client_no = m.client_no) as business_name,
+		title,note,regist_date,regist_time,attachment_file, delete_yn,
+		(SELECT COUNT(*) FROM maintenance where delete_yn = 'y') as totalCount 
+		FROM maintenance m where delete_yn = 'y' order by maintenance_no DESC limit #{page},20
+        ]]>
+	</select>
+
+	<update id="maintenanceDel" parameterType="int">
+	<![CDATA[
+	UPDATE maintenance
+		SET delete_yn = 'n' 
+		WHERE maintenance_no = #{m_no }
+	]]>
+	</update>
+
+	<select id="maintenanceSearch" parameterType="HashMap"
+		resultType="com.projecthh.crm.maintenance.vo.MaintenanceVO">
+        <![CDATA[
+			SELECT maintenance_no, employee_code, 
+		(select business_name from client c where c.client_no = m.client_no) as business_name,
+		title,note,regist_date,regist_time,attachment_file, delete_yn,
+		(SELECT COUNT(*) FROM maintenance where delete_yn = 'y' and title like CONCAT('%', #{key }, '%')) as totalCount
+		 FROM maintenance m where title like CONCAT('%', #{key }, '%') and delete_yn = 'y' order by maintenance_no DESC limit #{page},20
+        ]]>
+	</select>
+
+	<select id="maintenanceDetail" parameterType="int"
+		resultType="com.projecthh.crm.maintenance.vo.MaintenanceVO">
+        <![CDATA[
+		SELECT maintenance_no, employee_code, 
+		(select business_name from client c where c.client_no = m.client_no) as business_name,(select business_no from client c where c.client_no = m.client_no) as business_no,
+		title,note,regist_date,regist_time,attachment_file, delete_yn FROM maintenance m where maintenance_no = #{m_no}
+        ]]>
+	</select>
+	<insert id="mainInsert"
+		parameterType="com.projecthh.crm.maintenance.vo.MaintenanceVO">
+	<![CDATA[	
+	INSERT INTO maintenance 
+	(employee_code,client_no,title,note,attachment_file,regist_date,regist_time)
+ 	VALUES 
+ 	(#{employee_code},(SELECT client_no From client where business_no = #{business_no} ),#{title},#{note}, #{attachment_file},
+ 	date_format(now(),'%Y%m%d'),time_format(now(),'%H%i%s'))
+	]]>
+	</insert>
+	<update id="mainUpdate" parameterType="com.projecthh.crm.maintenance.vo.MaintenanceVO">
+		<![CDATA[
+			UPDATE maintenance SET employee_code = #{employee_code},
+			title =#{title},note =#{note}, attachment_file = #{attachment_file}
+			WHERE maintenance_no = #{maintenance_no}
+		]]>		
+	</update>
+</mapper>

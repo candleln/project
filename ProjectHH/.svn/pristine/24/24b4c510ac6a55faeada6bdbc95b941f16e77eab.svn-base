@@ -1,0 +1,43 @@
+package com.projecthh.company.downloads.controller;
+
+import java.util.ArrayList;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.projecthh.company.downloads.service.DownloadsService;
+import com.projecthh.company.downloads.vo.DownloadsVO;
+
+@Controller
+public class DownloadsController {
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "downloadsService")
+	private DownloadsService downloadsService;
+
+	@RequestMapping(value = "Ddetail")
+	public ModelAndView downloadsDetail(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView("/company/DOWNLOAD/DOWDET01");
+		String upload_no = request.getParameter("upload_no");
+		System.out.println(upload_no);
+		ArrayList<DownloadsVO> vo = downloadsService.downloadsDetail(upload_no);
+		mv.addObject("detail", vo);
+		return mv;
+	}
+	
+	@RequestMapping(value = "Dedit")
+	public ModelAndView downloadsEdit(HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/company/DOWNLOAD/DOWEDI01");
+		String parameter = request.getParameter("upload_no");
+		ArrayList<DownloadsVO> vo = downloadsService.downloadsEdit(parameter);
+		mv.addObject("edit", vo);
+		mv.addObject("parameter", parameter);
+		return mv;
+	}
+}

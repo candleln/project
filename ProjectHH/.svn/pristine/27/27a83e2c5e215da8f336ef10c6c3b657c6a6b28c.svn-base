@@ -1,0 +1,13 @@
+package com.projecthh.company.downloads.service;
+
+import java.util.ArrayList;
+
+import com.projecthh.company.downloads.vo.DownloadsVO;
+
+public interface DownloadsService {
+
+	ArrayList<DownloadsVO> downloadsDetail(String upload_no) throws Exception;
+
+	ArrayList<DownloadsVO> downloadsEdit(String parameter) throws Exception;
+
+}

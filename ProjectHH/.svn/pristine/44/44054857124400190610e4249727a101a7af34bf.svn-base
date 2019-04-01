@@ -1,0 +1,145 @@
+package com.projecthh.crm.consulting.vo;
+
+public class ConsultingVO {
+	private String consulting_no, consulting_contents, note, regist_date, regist_time, completion_yn, delete_yn, employee_code,
+	business_name, business_no, manager_department, manager_position, manager_name, manager_tel, manager_mobile, manager_email, file;
+
+	public String getConsulting_no() {
+		return consulting_no;
+	}
+
+	public void setConsulting_no(String consulting_no) {
+		this.consulting_no = consulting_no;
+	}
+
+	public String getConsulting_contents() {
+		return consulting_contents;
+	}
+
+	public void setConsulting_contents(String consulting_contents) {
+		this.consulting_contents = consulting_contents;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getRegist_date() {
+		return regist_date;
+	}
+
+	public void setRegist_date(String regist_date) {
+		this.regist_date = regist_date;
+	}
+
+	public String getRegist_time() {
+		return regist_time;
+	}
+
+	public void setRegist_time(String regist_time) {
+		this.regist_time = regist_time;
+	}
+
+	public String getCompletion_yn() {
+		return completion_yn;
+	}
+
+	public void setCompletion_yn(String completion_yn) {
+		this.completion_yn = completion_yn;
+	}
+
+	public String getDelete_yn() {
+		return delete_yn;
+	}
+
+	public void setDelete_yn(String delete_yn) {
+		this.delete_yn = delete_yn;
+	}
+
+	public String getEmployee_code() {
+		return employee_code;
+	}
+
+	public void setEmployee_code(String employee_code) {
+		this.employee_code = employee_code;
+	}
+
+	public String getBusiness_name() {
+		return business_name;
+	}
+
+	public void setBusiness_name(String business_name) {
+		this.business_name = business_name;
+	}
+
+	public String getBusiness_no() {
+		return business_no;
+	}
+
+	public void setBusiness_no(String business_no) {
+		this.business_no = business_no;
+	}
+
+	public String getManager_department() {
+		return manager_department;
+	}
+
+	public void setManager_department(String manager_department) {
+		this.manager_department = manager_department;
+	}
+
+	public String getManager_position() {
+		return manager_position;
+	}
+
+	public void setManager_position(String manager_position) {
+		this.manager_position = manager_position;
+	}
+
+	public String getManager_name() {
+		return manager_name;
+	}
+
+	public void setManager_name(String manager_name) {
+		this.manager_name = manager_name;
+	}
+
+	public String getManager_tel() {
+		return manager_tel;
+	}
+
+	public void setManager_tel(String manager_tel) {
+		this.manager_tel = manager_tel;
+	}
+
+	public String getManager_mobile() {
+		return manager_mobile;
+	}
+
+	public void setManager_mobile(String manager_mobile) {
+		this.manager_mobile = manager_mobile;
+	}
+
+	public String getManager_email() {
+		return manager_email;
+	}
+
+	public void setManager_email(String manager_email) {
+		this.manager_email = manager_email;
+	}
+
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+	
+	
+	
+}

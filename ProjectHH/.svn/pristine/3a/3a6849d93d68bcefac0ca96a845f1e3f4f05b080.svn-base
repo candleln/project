@@ -1,0 +1,91 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>KEY</title>
+<style type="text/css">
+section {
+margin: 0 auto; width: 1027px;
+}
+.searching {
+float: right;
+}
+table {
+margin: 10px;
+width: 1000px;
+text-align: center;
+}
+th, td {
+border: 1px silver solid;
+}
+.title {
+width: 50%;
+}
+button {
+float: right;
+}
+.page {
+width: 1027px;
+float: left;
+text-align: center;
+}
+</style>
+</head>
+<body>
+	<section>
+	Product Key		
+			<!--  리스트 -->
+			<div>
+				<table>
+					<tr>
+						<th>번호</th>
+						<th>제품 번호</th>
+						<th>생성일</th>
+						<th>만료일</th>	 
+						<th>상태</th>
+					</tr>
+					<tr> 
+						<td>5</td>
+						<td>KEYMAN05</td>
+						<td>2019-01-25</td>
+						<td>무기한</td>
+						<td>정지</td>
+					</tr>
+					<tr> 
+						<td>4</td>
+						<td>KEYMAN04</td>
+						<td>2019-01-25</td>
+						<td>무기한</td>
+						<td>사용중</td>
+					</tr>
+					<tr> 
+						<td>3</td>
+						<td>KEYMAN03</td>
+						<td>2019-01-25</td>
+						<td>무기한</td>
+						<td>미사용</td>
+					</tr>
+					<tr> 
+						<td>2</td>
+						<td>KEYMAN02</td>
+						<td>2019-01-25</td>
+						<td>무기한</td>
+						<td>사용중</td>
+					</tr>
+					<tr> 
+						<td>1</td>
+						<td>KEYMAN01</td>
+						<td>2019-01-25</td>
+						<td>무기한</td>
+						<td>사용중</td>
+					</tr>	
+				</table>
+				
+				<!-- 페이징 -->
+				<div class="page">1 2 3</div>
+			</div>
+	</section>
+</body>
+</html>

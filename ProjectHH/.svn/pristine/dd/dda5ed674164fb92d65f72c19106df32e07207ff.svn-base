@@ -1,0 +1,123 @@
+package com.projecthh.crm.maintenance.vo;
+
+public class MaintenanceVO {
+	private int maintenance_no;
+	private int client_no;
+	private int totalCount;
+	private String employee_code, title, note, regist_date, regist_time, attachment_file, delete_yn, business_name,
+			business_no;
+	private int page;
+	private String search;
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public String getSearch() {
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public int getMaintenance_no() {
+		return maintenance_no;
+	}
+
+	public void setMaintenance_no(int maintenance_no) {
+		this.maintenance_no = maintenance_no;
+	}
+
+	public int getClient_no() {
+		return client_no;
+	}
+
+	public void setClient_no(int client_no) {
+		this.client_no = client_no;
+	}
+
+	public String getEmployee_code() {
+		return employee_code;
+	}
+
+	public void setEmployee_code(String employee_code) {
+		this.employee_code = employee_code;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
+
+	public String getRegist_date() {
+		return regist_date;
+	}
+
+	public void setRegist_date(String regist_date) {
+		this.regist_date = regist_date;
+	}
+
+	public String getRegist_time() {
+		return regist_time;
+	}
+
+	public void setRegist_time(String regist_time) {
+		this.regist_time = regist_time;
+	}
+
+	public String getAttachment_file() {
+		return attachment_file;
+	}
+
+	public void setAttachment_file(String attachment_file) {
+		this.attachment_file = attachment_file;
+	}
+
+	public String getDelete_yn() {
+		return delete_yn;
+	}
+
+	public void setDelete_yn(String delete_yn) {
+		this.delete_yn = delete_yn;
+	}
+
+	public String getBusiness_name() {
+		return business_name;
+	}
+
+	public void setBusiness_name(String business_name) {
+		this.business_name = business_name;
+	}
+
+	public String getBusiness_no() {
+		return business_no;
+	}
+
+	public void setBusiness_no(String business_no) {
+		this.business_no = business_no;
+	}
+
+	public int getTotalCount() {
+		return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+		this.totalCount = totalCount;
+	}
+}

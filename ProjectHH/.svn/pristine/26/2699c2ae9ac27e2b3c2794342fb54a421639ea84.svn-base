@@ -1,0 +1,85 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>구매내역</title>
+<!-- 구매내역 -->
+<style type="text/css">
+#top {
+	padding-top: 10px;
+	background-color: YELLOW;
+	text-align: center;
+	height: 100px;
+}
+
+#left {
+	padding-top: 20px;
+	background-color: BLUE;
+	text-align: center;
+	float: left;
+	width: 100px;
+	height: 100%;
+}
+
+#container {
+	float: none;
+	margin-left: 30%;
+	margin-right: 30%
+}
+
+table {
+	border-collapse: collapse;
+	width: 800px;
+}
+
+th, td {
+	padding: 10px;
+	border-bottom: 1px solid BLACK;
+}
+
+td {
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+</style>
+</head>
+<body>
+	<div>
+		<div id="top">
+			<h1>구매 내역</h1>
+		</div>
+		<div id="left">
+			<!-- 구성 -->
+			<a href="">마이페이지</a><br>
+			<a href="">회원 수정</a><br>
+			<a href="">회원 탈퇴</a><br>
+			<a href="">구매 내역</a><br>
+		</div>
+		<div id="container">
+			<table>
+				<tr>
+					<td>번호</td>
+					<td>주문내역</td>
+					<td>수량</td>
+					<td>금액</td>
+					<td>키</td>
+					<td>날짜</td>
+				</tr>
+				<tr>
+					<th>1</th>
+					<th>LU&B</th>
+					<th>1</th>
+					<th>1억</th>
+					<th><a href="" target="blank">key</a></th>
+					<th>2019-01-10</th>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

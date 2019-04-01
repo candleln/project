@@ -1,0 +1,86 @@
+package com.projecthh.company.qna.DAO;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+import com.projecthh.common.AbstractDAO;
+import com.projecthh.company.qna.vo.QnaDTO;
+
+
+@Repository("qnaDAO")
+public class QnaDAO extends AbstractDAO {
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<QnaDTO> qnaList(int page) {
+
+		return (ArrayList<QnaDTO>) selectList("qnaList", page);
+	}
+
+	@SuppressWarnings("unchecked")
+	public QnaDTO qnaDetail(String qna_no) {
+		
+		return (QnaDTO) selectOne("qnaDetail", qna_no);
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<QnaDTO> search(Map<String, Object> map) {
+		
+		return (ArrayList<QnaDTO>) selectList("qna.search", map);
+	}
+
+	@SuppressWarnings("unchecked")
+	public String matchPass(Map<String, String> map) {
+		
+		return (String) selectOne("qnaMatchpass", map);
+	}
+
+	public void qnaInsert(QnaDTO dto) {
+
+		insert("qnaInsert", dto);
+	}
+
+	public String updatepass(Map<String, Object> map) {
+
+		return (String) update("updatepass", map);
+	}
+
+	public String deletepass(Map<String, Object> map) {
+
+		return (String) delete("deletepass", map);
+	}
+
+	public String password(String parameter) {
+
+		return (String) selectOne("qnapass", parameter);
+	}
+
+	public void qnaupdate(QnaDTO dto) {
+
+		update("qnaupdate", dto);
+	}
+
+	public void qnaDelete(int parseInt) {
+
+		update("qnadelete", parseInt);
+	}
+
+	public void qnacomment(QnaDTO dto) {
+
+		update("qnacomment", dto);
+	}
+
+	public QnaDTO qnaEdit(int parseInt) {
+
+		
+		return (QnaDTO) selectOne("qnaEdit", parseInt);
+	}
+
+	public int searchQnaCount(Map<String, Object> map) {
+
+		return (Integer) selectOne("qnaListCount", map);
+	}
+	
+
+}

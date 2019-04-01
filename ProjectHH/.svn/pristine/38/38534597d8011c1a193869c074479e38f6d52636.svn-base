@@ -1,0 +1,45 @@
+package com.projecthh.company.qna.service;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import com.projecthh.company.qna.vo.QnaDTO;
+
+public interface QnaService {
+
+	ArrayList<QnaDTO> qnalist(int page) throws Exception;
+
+	QnaDTO qnaDetail(String qna_no) throws Exception;
+
+	String matchPass(Map<String, String> map);
+
+	void qnaInsert(QnaDTO dto) throws Exception;
+
+	String deletepass(Map<String, Object> map);
+
+	String password(String parameter);
+
+	void qnaupdate(QnaDTO dto);
+
+	void qnadelete(int parseInt) throws Exception;
+
+	void qnacomment(QnaDTO dto);
+
+	QnaDTO qnaEdit(int parseInt);
+
+	ArrayList<QnaDTO> search(Map<String, Object> map) throws Exception;
+
+	int searchQnaCount(Map<String, Object> map);
+
+	
+
+	
+
+	
+
+
+	/*QnaDTO qnaEdit(String parameter);
+
+	void edit(QnaDTO qna) throws Exception;*/
+
+}
