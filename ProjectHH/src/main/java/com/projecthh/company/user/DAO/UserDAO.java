@@ -14,7 +14,6 @@ import com.projecthh.company.user.vo.UserVO;
 public class UserDAO extends AbstractDAO {
 
 	public UserVO login(UserVO vo) {
-		// TODO Auto-generated method stub
 		return (UserVO) selectOne("user.login", vo);
 	}
 

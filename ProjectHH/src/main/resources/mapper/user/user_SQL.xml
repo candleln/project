@@ -4,13 +4,13 @@
 
 	<select id="login" resultType="com.projecthh.company.user.vo.UserVO">
         <![CDATA[
-			SELECT id, pw, name, user_type, state, `grant` FROM user WHERE id = #{id} AND pw = #{pw}
+			SELECT id, pw, name, user_type, state, `grant` FROM user WHERE id = #{id} AND pw = HEX(AES_ENCRYPT(#{pw}, SHA2('summer', 256)))
         ]]>
 	</select>
 	
 	<insert id="insertUser" parameterType="com.projecthh.company.user.vo.UserVO">
 		INSERT INTO user (id, name, pw, address, tel, join_date, join_time, authKey) 
-		VALUES (#{id}, #{name}, #{pw}, #{address}, #{tel}, DATE_FORMAT(now(),'%Y%m%d'), TIME_FORMAT(now(),'%H%i%s'), #{authKey})
+		VALUES (#{id}, #{name}, HEX(AES_ENCRYPT(#{pw}, SHA2('summer', 256))), #{address}, #{tel}, DATE_FORMAT(now(),'%Y%m%d'), TIME_FORMAT(now(),'%H%i%s'), #{authKey})
 	</insert>
 	
 	<update id="updateUserState" parameterType="hashmap">
