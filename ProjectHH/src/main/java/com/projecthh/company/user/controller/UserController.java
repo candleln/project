@@ -100,7 +100,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/signInAction")
 	public String insertUser(Model model, UserVO vo, HttpServletRequest request) throws Exception {
-		String authKey = new AuthKeyCreator().getKey(20);
+		String authKey = new AuthKeyCreator().getKey(20); //인증키 생성
 		vo.setId(request.getParameter("id"));
 		vo.setName(request.getParameter("name"));
 		vo.setPw(request.getParameter("pw"));
@@ -115,7 +115,7 @@ public class UserController {
 		return "redirect:/signInConfirm";
 	}
 	
-	//인증키
+	//인증
 	@RequestMapping(value = "/signInConfirm")
 	public String confirmSignIn(Model model, HttpServletRequest request, Map<String, Object> map) throws Exception {
 		String authKey = request.getParameter("authKey");

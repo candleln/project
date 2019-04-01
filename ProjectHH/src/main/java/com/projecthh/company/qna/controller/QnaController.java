@@ -142,7 +142,7 @@ public class QnaController {
 
 	@RequestMapping(value = "qnaDelete")
 	public ModelAndView delete(HttpServletRequest request) throws Exception {
-		qnaService.qnaDelete(request.getParameter("num"));
+		qnaService.qnaDelete(request.getParameter("no"));
 		
 		return new ModelAndView("redirect:qnaList");
 	}

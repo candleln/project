@@ -10,7 +10,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
-/*@Component("mailUtils")*/
 public class MailUtils {
 	
     private JavaMailSenderImpl mailSender;

@@ -65,6 +65,7 @@ $(function() {
 			pwCheck = true;
 		};
 	});
+	
 	 $('#idCheck').click(function() {		 
         $.ajax({
             data : $("#id"),

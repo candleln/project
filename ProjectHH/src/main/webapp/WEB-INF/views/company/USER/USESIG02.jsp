@@ -11,6 +11,7 @@
 </head>
 <body>
 <%@include file="../MAIN/topmenu.jsp"%>
+
 	<div id="container">
 		<div>
 			<c:choose>
@@ -32,6 +33,7 @@
 			</c:choose>
 		</div>
 	</div>
+	
 <%@include file="../MAIN/footer.jsp"%>
 </body>
 </html>

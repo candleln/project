@@ -28,7 +28,7 @@ $(function() {
 	console.log(data.pass);
 		if ($('#pw').val() == data.pass) {
 			if (data.type == "update") {
-				window.opener.top.location.href="/qnaUpdate?no="+data.no;
+				window.opener.top.location.href="/qnaEdit?no="+data.no;
 				window.close();
 				return false;
 			} else if (data.type == "detail") {
